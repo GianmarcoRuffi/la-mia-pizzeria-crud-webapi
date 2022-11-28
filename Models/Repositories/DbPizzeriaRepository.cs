@@ -1,4 +1,4 @@
-﻿using Azure;
+﻿    using Azure;
 using la_mia_pizzeria_static.Data;
 using la_mia_pizzeria_static.Models.Form;
 using Microsoft.EntityFrameworkCore;
@@ -19,7 +19,13 @@ namespace la_mia_pizzeria_static.Models.Repositories
             db = new PizzaDbContext();
         }
 
+
         public List<Pizza> All()
+        {
+            return AllWithRelations();
+        }
+
+        public List<Pizza> AllWithRelations()
         {
             return db.Pizzas.Include(pizza => pizza.Category).Include(pizza => pizza.Ingrediente).ToList();
         }
