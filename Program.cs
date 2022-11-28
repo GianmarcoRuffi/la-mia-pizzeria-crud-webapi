@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,12 +9,21 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages()
     .AddRazorRuntimeCompilation();
 
+// fix
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    options.JsonSerializerOptions.WriteIndented = true;
+});
+
+//
+
 System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
 customCulture.NumberFormat.NumberDecimalSeparator = ".";
 
 System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
 
-
+//
 
 var app = builder.Build();
 
@@ -33,6 +44,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Guest}/{action=Index}/{id?}");
 
 app.Run();

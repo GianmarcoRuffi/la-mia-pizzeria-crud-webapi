@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+@*<body>
+
+    <main>
+<div class="p-5 mb-4 bg-light rounded-3">
+      <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold"><a asp-area="" asp-controller="Pizza" asp-action="Index">Prova le nostre pizze!</a></h1>
+        <p class="col-md-8 fs-4">Pizze cotte con forno a legna e ingredienti di qualità</p>
+        <img src="~/images/istockphoto-638790274-612x612.jpg"/>
+      </div>
+    </div>
+ 
+
+    
+      
+</main>
+
+</body>
+*@
+
+
+ <div class="row js_no_post text-center d-none">
+        <div class="col-12">
+            <h3>Non sono presenti pizze</h3>
+        </div>
+    </div>
+    <div class="row js_post_table d-none">
+        <!-- qui verranno mostrati gli elementi -->
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+
+
+<script type="text/javascript">
+
+    axios.get('/api/pizza/get').then(res => {
+        if (res.data.length == 0) {
+            document.querySelector('.js_no_pizza').classList.remove('d-none');
+            document.querySelector('.js_pizza_table').classList.add('d-none');
+        } else {
+            document.querySelector('.js_pizza_table').classList.remove('d-none');
+            document.querySelector('.js_no_pizza').classList.add('d-none');
+            document.querySelector('.js_pizza_table').innerHTML = '';
+            res.data.forEach(pizza => {
+                console.log('pizza', pizza);
+                document.querySelector('.js_pizza_table').innerHTML +=
+                    `
+                                                            <div class="col-12 col-md-4 p-2">
+                                        <div class="card pizza h-100">
+                                          <img src="${pizza.image}" class="card-img-top" alt="...">
+                                          <div class="card-body">
+                                            <h5 class="card-title">${pizza.name}</h5>
+                                            <p class="card-text">${pizza.description}</p>
+                                                  <strong>Prezzo: ${pizza.prezzo} Euro</strong>
+                                                       <span><strong>Categoria: </strong>Categoria: ${pizza.category.name}</span>
+                                              </div>
+                                        </div>
+                                    </div>
+                                    `;
+            });
+        }
+    }).catch(error => {
+        debugger;
+        console.log(error);
+    })
+
+</script>

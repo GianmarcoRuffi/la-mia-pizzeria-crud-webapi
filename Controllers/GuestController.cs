@@ -4,11 +4,11 @@ using System.Diagnostics;
 
 namespace la_mia_pizzeria_static.Controllers
 {
-    public class HomeController : Controller
+    public class GuestController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<GuestController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public GuestController(ILogger<GuestController> logger)
         {
             _logger = logger;
         }
