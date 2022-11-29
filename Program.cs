@@ -1,3 +1,4 @@
+using la_mia_pizzeria_static.Models.Repositories;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +23,12 @@ System.Globalization.CultureInfo customCulture = (System.Globalization.CultureIn
 customCulture.NumberFormat.NumberDecimalSeparator = ".";
 
 System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
+
+
+//
+
+//per far partire con db se funziona
+builder.Services.AddScoped<IPizzeriaRepository, DbPizzeriaRepository>();
 
 //
 
