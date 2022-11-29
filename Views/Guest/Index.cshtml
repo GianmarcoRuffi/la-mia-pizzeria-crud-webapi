@@ -4,6 +4,28 @@
 }
 
 
+
+
+
+@*searchbar*@
+<div>
+    <input id="user_search" type="text" class="js_search form-control" />
+    <!-- input id="user_search" type="text" class="js_search form-control" onkeyup="OnUserInput(this)" /> -->
+</div>
+
+<div class="row js_no_post text-center d-none">
+    <div class="col-12">
+        <h3>Non hai inserito alcuna pizza</h3>
+    </div>
+</div>
+<div class="row js_post_table d-none">
+    <!-- qui verranno mostrati gli elementi -->
+</div>
+
+
+
+
+
 @*<body>
 
     <main>
@@ -34,6 +56,43 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+
+
+
+
+
+    @section Scripts{
+
+
+    <script type="text/javascript">
+        document.querySelector(".js_search").addEventListener('keyup', OnUserInputEvent);
+        var timeoutId = null;
+        function OnUserInputEvent(e) {
+            let query = e.target.value;
+            if (timeoutId != null)
+                clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => {
+                axios.get('/api/pizza/search', {
+                    params: {
+                        name: query
+                    }
+                }).then(response => {
+                    RenderPost(response.data);
+                }).catch(error => {
+                    console.log(error);
+                })
+            }, 300);
+        }
+        console.log("dopo", document.querySelector(".js_search").value);
+        //chiamata api per prendere le pizze
+        axios.get('/api/pizza/get').then(res => {
+            RenderPost(res.data);
+        }).catch(error => {
+            debugger;
+            console.log(error);
+        })
+                }
+
 
 
 <script type="text/javascript">
@@ -70,3 +129,5 @@
     })
 
 </script>
+
+                                                  }

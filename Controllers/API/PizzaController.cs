@@ -24,7 +24,22 @@ namespace la_mia_pizzeria_static.Controllers.API
 
         }
 
+        public IActionResult Search(string? name)
+        {
 
+            List<Pizza> pizzas = _pizzeriaRepository.SearchByName(name);
+
+            return Ok(pizzas);
+
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult Detail(int id)
+        {
+            Pizza pizza = _pizzeriaRepository.GetById(id);
+
+            return Ok(pizza);
+        }
 
     }
 }

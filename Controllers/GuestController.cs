@@ -19,10 +19,17 @@ namespace la_mia_pizzeria_static.Controllers
             return View();
         }
 
+        public IActionResult Detail(int id)
+        {
+
+            ViewData["title"] = "Dettaglio Pizza";
+            return View(id);
+        }
 
 
         public IActionResult Privacy()
         {
+            ViewData["title"] = "Privacy";
             return View();
         }
 

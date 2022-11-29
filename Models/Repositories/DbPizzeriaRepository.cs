@@ -35,6 +35,9 @@ namespace la_mia_pizzeria_static.Models.Repositories
             return db.Pizzas.Where(p => p.Id == id).Include("Category").Include("Ingrediente").FirstOrDefault();
         }
 
+
+
+        // metodo create
         public void Create(Pizza pizza, List<int> IngredientiSelezionati)
         {
             if (IngredientiSelezionati == null)
@@ -57,7 +60,7 @@ namespace la_mia_pizzeria_static.Models.Repositories
         }
 
 
-
+        // metodo update
 
         public void Modifica(Pizza pizza, Pizza formData, List<int>? IngredientiSelezionati)
         {
@@ -85,13 +88,27 @@ namespace la_mia_pizzeria_static.Models.Repositories
         }
 
 
-
+        // metodo delete
 
         public void Delete(Pizza pizza)
         {
             db.Pizzas.Remove(pizza);
             db.SaveChanges();
         }
+
+        //metodo per ricerca per nome
+        public List<Pizza> SearchByName(string? name)
+        {
+            IQueryable<Pizza> query = db.Pizzas.Include("Category").Include("Ingrediente");
+
+            //name null restituisce lista pizze
+            if (name == null)
+                return query.ToList();
+
+            return query.Where(pizza => pizza.Name.ToLower().Contains(name.ToLower())).ToList();
+        }
+
+
 
     }
 }

@@ -1,4 +1,6 @@
 using la_mia_pizzeria_static.Models.Repositories;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,7 +29,7 @@ System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
 
 //
 
-//per far partire con db se funziona
+//injections per far partire con db
 builder.Services.AddScoped<IPizzeriaRepository, DbPizzeriaRepository>();
 
 //
@@ -52,5 +54,11 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Guest}/{action=Index}/{id?}");
-
 app.Run();
+
+
+//PostController —> [Route(“[controller] /[action] /{?d ?}“,Order = 0 )]
+
+//    Api / PostController —> [Route("api/[controller]/[action]", Order = 1)]
+
+//    PostController —> [Route(“[controller] /[action] /{ id ?}“,Order = 0 )]

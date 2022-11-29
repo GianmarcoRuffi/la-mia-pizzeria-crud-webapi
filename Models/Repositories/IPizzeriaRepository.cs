@@ -13,6 +13,8 @@ namespace la_mia_pizzeria_static.Models.Repositories
         void Modifica(Pizza pizza, Pizza formData, List<int>? IngredientiSelezionati);
         void Delete(Pizza pizza);
 
+        List<Pizza> SearchByName(string? name);
+
 
 
     }
