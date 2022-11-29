@@ -41,74 +41,66 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
 
 
-    @section Scripts{
+<script type="text/javascript">
 
-
-    <script type="text/javascript">
-        document.querySelector(".js_search").addEventListener('keyup', OnUserInputEvent);
-        var timeoutId = null;
-
-        //
-        function OnUserInputEvent(e) {
-            let query = e.target.value;
-            if (timeoutId != null)
-                clearTimeout(timeoutId);
-            timeoutId = setTimeout(() => {
-                axios.get('/api/pizza/search', {
-                    params: {
-                        name: query
-                    }
-                }).then(response => {
-                    RenderPost(response.data);
-                }).catch(error => {
-                    console.log(error);
-                })
-            }, 300);
-        }
-        //
-        console.log("dopo", document.querySelector(".js_search").value);
-        //chiamata api per prendere le pizze
-        axios.get('/api/pizza/get').then(res => {
-            RenderPizza(res.data);
-        }).catch(error => {
-            debugger;
-            console.log(error);
-        })
+    // funzione enter
+    document.querySelector(".js_search").addEventListener('keyup', OnUserInputEvent);
+    var timeoutId = null;
+    function OnUserInputEvent(e) {
+        let query = e.target.value;
+        if (timeoutId != null)
+            clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+            axios.get('/api/pizza/search', {
+                params: {
+                    name: query
                 }
+            }).then(response => {
+                RenderPizza(response.data);
+            }).catch(error => {
+                console.log(error);
+            })
+        }, 300);
+    }
+
+    //chiamata axios e funzione
+    axios.get('/api/pizza/get').then(res => {
+        RenderPizza(res.data);
+    }).catch(error => {
+        debugger;
+        console.log(error);
+    })
 
 
-                     //funzione per renderizzare le card delle pizze
+    // funzione per renderizzare le cards
 
-
-     function RenderPizza(data) {
-        if (res.data.length == 0) {
-            document.querySelector('.js_no_pizza').classList.remove('d-none');
-            document.querySelector('.js_pizza_table').classList.add('d-none');
+    function RenderPizza(data) {
+        if (data.length == 0) {
+            document.querySelector('.js_no_pizzas').classList.remove('d-none');
+            document.querySelector('.js_pizzas_table').classList.add('d-none');
         } else {
-            document.querySelector('.js_pizza_table').classList.remove('d-none');
-            document.querySelector('.js_no_pizza').classList.add('d-none');
-            document.querySelector('.js_pizza_table').innerHTML = '';
-            res.data.forEach(pizza => {
+            document.querySelector('.js_pizzas_table').classList.remove('d-none');
+            document.querySelector('.js_no_pizzas').classList.add('d-none');
+            document.querySelector('.js_pizzas_table').innerHTML = '';
+            data.forEach(pizza => {
                 console.log('pizza', pizza);
-                document.querySelector('.js_pizza_table').innerHTML +=
+                document.querySelector('.js_pizzas_table').innerHTML +=
                     `
-                                                            <div class="col-12 col-md-4 p-2">
-                                        <div class="card pizza h-100">
-                                          <img src="${pizza.image}" class="card-img-top" alt="...">
-                                          <div class="card-body">
-                                            <h5 class="card-title">${pizza.name}</h5>
-                                            <p class="card-text">${pizza.description}</p>
-                                                  <strong>Prezzo: ${pizza.prezzo} Euro</strong>
-                                                       <span><strong>Categoria: </strong>Categoria: ${pizza.category.name}</span>
-                                                                <a href="/Guest/Details/${pizza.id}">Dettaglio</a>
-                                              </div>
-                                        </div>
-                                    </div>
-                                    `;
+                                                  <div class="col-12 col-md-4 p-2">
+                                                    <div class="card pizza h-100">
+                                                      <img src="${pizza.image}" class="card-img-top" alt="...">
+                                                      <div class="card-body">
+                                                        <h5 class="card-title">${pizza.name}</h5>
+                                                        <p class="card-text">${pizza.description}</p>
+                                                        <p>${pizza.category.name}</p>
+                                                            <p>${pizza.prezzo}</p>
+                                                        <div><a  class="btn btn-primary" href="/Guest/Details/${pizza.id}">Dettaglio</a></div>
+                                                       </div>
+                                                    </div>
+                                                </div>
+                                                `;
             });
         }
-  
+    }
 
 </script>
-
-                                                  }
