@@ -47,6 +47,8 @@
     <script type="text/javascript">
         document.querySelector(".js_search").addEventListener('keyup', OnUserInputEvent);
         var timeoutId = null;
+
+        //
         function OnUserInputEvent(e) {
             let query = e.target.value;
             if (timeoutId != null)
@@ -63,10 +65,11 @@
                 })
             }, 300);
         }
+        //
         console.log("dopo", document.querySelector(".js_search").value);
         //chiamata api per prendere le pizze
         axios.get('/api/pizza/get').then(res => {
-            RenderPost(res.data);
+            RenderPizza(res.data);
         }).catch(error => {
             debugger;
             console.log(error);
@@ -75,9 +78,9 @@
 
 
                      //funzione per renderizzare le card delle pizze
-<script type="text/javascript">
 
-    axios.get('/api/pizza/get').then(res => {
+
+     function RenderPizza(data) {
         if (res.data.length == 0) {
             document.querySelector('.js_no_pizza').classList.remove('d-none');
             document.querySelector('.js_pizza_table').classList.add('d-none');
@@ -104,10 +107,7 @@
                                     `;
             });
         }
-    }).catch(error => {
-        debugger;
-        console.log(error);
-    })
+  
 
 </script>
 

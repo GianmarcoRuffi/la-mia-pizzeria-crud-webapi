@@ -1,1 +1,41 @@
-﻿
+﻿@{
+    Layout = "_GuestLayout";
+}
+
+@model int
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="js_pizza_container">
+                <!-- dati di dettaglio pizza -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+    <script type="text/javascript">
+        //let pathSplit = window.location.pathname.split('/');
+        //let id = pathSplit[pathSplit.length-1];
+        axios.get(`/api/pizza/dettaglio/${@Model}`).then(res => {
+            const pizza = res.data;
+            document.querySelector('.js_pizza_container').innerHTML +=
+                `
+                            <div class="col-12 col-md-4 p-2">
+                                  <div class="card pizza h-100">
+                                        <img src="${pizza.image}" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                        <h5 class="card-title">${pizza.name}</h5>
+                                        <p class="card-text">${pizza.description}</p>
+                                        <p class="card-text">${pizza.category.name}</p>
+                                        <div>
+                                            ${pizza.ingrediente.map(item => `<span class="badge bg-primary">#${item.title}</span>`, "").join(' ')}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            `;
+        }).catch(error => console.log(error))
+    </script>
