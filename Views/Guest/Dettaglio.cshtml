@@ -21,6 +21,13 @@
         //let id = pathSplit[pathSplit.length-1];
         axios.get(`/api/pizza/dettaglio/${@Model}`).then(res => {
             const pizza = res.data;
+              //foreach su ingredienti per poi poterli stampare
+            let listaIngredienti = '';
+            pizza.ingrediente.forEach(ingrediente => {
+                listaIngredienti +=
+                    `<li class=" badge btn-info bg-primary">${ingrediente.name}</li> `
+            })
+
             document.querySelector('.js_pizza_container').innerHTML += `
 
 
@@ -35,6 +42,7 @@
                 <h5 class="fs-3 fw-bold lh-1 mb-2">${pizza.category.name}</h5>
                 <h3>${pizza.prezzo} €</h3>
                 <p class="lead">${pizza.description}</p>
+                     <ul">${listaIngredienti}</ul>
 
 
             </div>
@@ -46,3 +54,12 @@
         }).catch(error => console.log(error))
     </script>
 
+
+
+
+@*
+                
+                                        <div>
+                                            ${pizza.ingrediente.map(item => `<span class="badge bg-primary">#${item.title}</span>`, "").join(' ')}
+                                        </div>
+                                   *@

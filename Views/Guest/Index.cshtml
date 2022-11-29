@@ -28,17 +28,17 @@
     <!-- input id="user_search" type="text" class="js_search form-control" onkeyup="OnUserInput(this)" /> -->
 </div>
 
-<div class="row js_no_post text-center d-none">
+<div class="row js_no_pizzas text-center d-none">
     <div class="col-12">
         <h3>Non sono state trovate pizze</h3>
     </div>
 </div>
-<div class="row js_post_table d-none">
+<div class="row js_pizzas_table d-none">
     <!-- qui verranno mostrati gli elementi -->
 </div>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
 
 
 <script type="text/javascript">
@@ -86,19 +86,19 @@
                 console.log('pizza', pizza);
                 document.querySelector('.js_pizzas_table').innerHTML +=
                     `
-                                                  <div class="col-12 col-md-4 p-2">
-                                                    <div class="card pizza h-100">
-                                                      <img src="${pizza.image}" class="card-img-top" alt="...">
-                                                      <div class="card-body">
-                                                        <h5 class="card-title">${pizza.name}</h5>
-                                                        <p class="card-text">${pizza.description}</p>
-                                                        <p>${pizza.category.name}</p>
-                                                            <p>${pizza.prezzo}</p>
-                                                        <div><a  class="btn btn-primary" href="/Guest/Details/${pizza.id}">Dettaglio</a></div>
-                                                       </div>
+                                                      <div class="col-12 col-md-4 p-2">
+                                                        <div class="card pizza h-100">
+                                                          <img src="${pizza.image}" class="card-img-top" alt="...">
+                                                          <div class="card-body">
+                                                            <h5 class="card-title">${pizza.name}</h5>
+                                                            <p class="card-text">${pizza.description}</p>
+                                                            <p>${pizza.category.name}</p>
+                                                                <p>${pizza.prezzo} €</p>
+                                                            <div><a  class="btn btn-primary" href="/Guest/Dettaglio/${pizza.id}">Dettaglio</a></div>
+                                                           </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                `;
+                                                    `;
             });
         }
     }
