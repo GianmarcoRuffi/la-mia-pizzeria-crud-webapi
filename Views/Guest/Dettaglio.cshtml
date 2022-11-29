@@ -22,20 +22,22 @@
         axios.get(`/api/pizza/dettaglio/${@Model}`).then(res => {
             const pizza = res.data;
             document.querySelector('.js_pizza_container').innerHTML +=
-                `
-                            <div class="col-12 col-md-4 p-2">
-                                  <div class="card pizza h-100">
-                                        <img src="${pizza.image}" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                        <h5 class="card-title">${pizza.name}</h5>
-                                        <p class="card-text">${pizza.description}</p>
-                                        <p class="card-text">${pizza.category.name}</p>
-                                        <div>
-                                            ${pizza.ingrediente.map(item => `<span class="badge bg-primary">#${item.title}</span>`, "").join(' ')}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            `;
+                                                      ` <div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+        <div class="col-10 col-sm-8 col-lg-6">
+            <img src="${pizza.image}" class="d-block mx-lg-auto img-fluid" alt="${pizza.name}" width="700" height="500" loading="in caricamento...">
+        </div>
+        <div class="col-lg-6">
+            <h2 class="display-3 fw-bold lh-1 mb-3">${pizza.name}</h2>
+            <h5 class="fs-3 fw-bold lh-1 mb-2">${pizza.category.name}</h5>
+            <h3>${pizza.prezzo} €</h3>
+            <p class="lead">${pizza.description}</p>
+            <span class="fw-bold">Ingredienti Extra:</span>
+            ${pizza.ingrediente.map(item => `<span class="badge bg-primary">#${ingrediente.name}</span>`, "").join(' ')}
+           
+        </div>
+    </div>
+</div>`;
         }).catch(error => console.log(error))
     </script>
+
