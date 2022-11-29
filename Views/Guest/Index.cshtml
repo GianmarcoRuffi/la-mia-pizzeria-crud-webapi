@@ -1,30 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
-    Layout = "_Layout";
+    Layout = "_GuestLayout";
 }
-
-
-
-
-
-@*searchbar*@
-<div>
-    <input id="user_search" type="text" class="js_search form-control" />
-    <!-- input id="user_search" type="text" class="js_search form-control" onkeyup="OnUserInput(this)" /> -->
-</div>
-
-<div class="row js_no_post text-center d-none">
-    <div class="col-12">
-        <h3>Non hai inserito alcuna pizza</h3>
-    </div>
-</div>
-<div class="row js_post_table d-none">
-    <!-- qui verranno mostrati gli elementi -->
-</div>
-
-
-
-
 
 @*<body>
 
@@ -36,29 +13,32 @@
         <img src="~/images/istockphoto-638790274-612x612.jpg"/>
       </div>
     </div>
- 
-
-    
-      
 </main>
 
 </body>
 *@
 
+<div>
+    <h1>Welcome Guest</h1>
+</div>
 
- <div class="row js_no_post text-center d-none">
-        <div class="col-12">
-            <h3>Non sono presenti pizze</h3>
-        </div>
+@*searchbar*@
+<div>
+    <input id="user_search" type="text" class="js_search form-control" />
+    <!-- input id="user_search" type="text" class="js_search form-control" onkeyup="OnUserInput(this)" /> -->
+</div>
+
+<div class="row js_no_post text-center d-none">
+    <div class="col-12">
+        <h3>Non sono state trovate pizze</h3>
     </div>
-    <div class="row js_post_table d-none">
-        <!-- qui verranno mostrati gli elementi -->
-    </div>
+</div>
+<div class="row js_post_table d-none">
+    <!-- qui verranno mostrati gli elementi -->
+</div>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
-
-
-
 
 
     @section Scripts{
@@ -94,7 +74,7 @@
                 }
 
 
-
+                     //funzione per renderizzare le card delle pizze
 <script type="text/javascript">
 
     axios.get('/api/pizza/get').then(res => {
@@ -117,6 +97,7 @@
                                             <p class="card-text">${pizza.description}</p>
                                                   <strong>Prezzo: ${pizza.prezzo} Euro</strong>
                                                        <span><strong>Categoria: </strong>Categoria: ${pizza.category.name}</span>
+                                                                <a href="/Guest/Details/${pizza.id}">Dettaglio</a>
                                               </div>
                                         </div>
                                     </div>

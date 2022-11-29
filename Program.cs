@@ -57,8 +57,3 @@ app.MapControllerRoute(
 app.Run();
 
 
-//PostController —> [Route(“[controller] /[action] /{?d ?}“,Order = 0 )]
-
-//    Api / PostController —> [Route("api/[controller]/[action]", Order = 1)]
-
-//    PostController —> [Route(“[controller] /[action] /{ id ?}“,Order = 0 )]

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace la_mia_pizzeria_static.Controllers.API
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]/[action]", Order = 1)]
     [ApiController]
     public class PizzaController : ControllerBase
     {
@@ -34,7 +34,7 @@ namespace la_mia_pizzeria_static.Controllers.API
         }
 
         [HttpGet("{id}")]
-        public IActionResult Detail(int id)
+        public IActionResult Dettaglio(int id)
         {
             Pizza pizza = _pizzeriaRepository.GetById(id);
 

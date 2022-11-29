@@ -19,7 +19,7 @@ namespace la_mia_pizzeria_static.Controllers
             return View();
         }
 
-        public IActionResult Detail(int id)
+        public IActionResult Dettaglio(int id)
         {
 
             ViewData["title"] = "Dettaglio Pizza";
