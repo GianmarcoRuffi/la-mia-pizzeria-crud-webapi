@@ -26,25 +26,27 @@
     </div>
 </div>
 
-                @section Scripts
-    {
-     <script type="text/javascript">
-                          function inviaMessaggio(e) {
-                              e.preventDefault();
-                              axios.post('/api/message', {
-                                  email: document.querySelector('#contact-email').value,
-                                  username: document.querySelector('#contact-name').value,
-                                  title: document.querySelector('#contact-title').value,
-                                  text: document.querySelector('#contact-text').value,
-                              }).then(res => {
-                                  swal("Messaggio inserito correttamente!", "Successo!");
-                                  //document.querySelector('#contact-email').value = '';
-                                  //document.querySelector('#contact-name').value = '';
-                                  document.querySelector('#contact-title').value = '';
-                                  document.querySelector('#contact-text').value = '';
-                              }).catch(error => {
-                                  console.log(error.response.data.errors);
-                              })
-                          }
+@section Scripts{
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript">
+        function inviaMessaggio(e) {
+
+            e.preventDefault();
+            axios.post('/api/message', {
+                email: document.querySelector('#contact-email').value,
+                name: document.querySelector('#contact-name').value,
+                title: document.querySelector('#contact-title').value,
+                text: document.querySelector('#contact-text').value,
+            }).then(res => {
+                swal("Messaggio inserito correttamente!", "Successo!");
+                //document.querySelector('#contact-email').value = '';
+                //document.querySelector('#contact-name').value = '';
+                document.querySelector('#contact-title').value = '';
+                document.querySelector('#contact-text').value = '';
+            }).catch(error => {
+
+                console.log(error.response.data.errors);
+            })
+        }
     </script>
 }

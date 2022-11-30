@@ -5,7 +5,7 @@ using la_mia_pizzeria_static.Data;
 
 namespace la_mia_pizzeria_static.Controllers.API
 {
-    [Route("api/[controller]/[action]", Order = 1)]
+    [Route("api/[controller]")]
     [ApiController]
     public class MessageController : ControllerBase
     {

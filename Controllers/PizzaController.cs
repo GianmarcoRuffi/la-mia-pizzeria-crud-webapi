@@ -23,12 +23,12 @@ namespace la_mia_pizzeria_static.Controllers
         IPizzeriaRepository pizzeriaRepository;
 
 
-        public PizzaController(IPizzeriaRepository _pizzeriaRepository) : base()
+        public PizzaController(IPizzeriaRepository _pizzeriaRepository, PizzaDbContext _db) : base()
         {
-            db = new PizzaDbContext();
+            db = _db;
             //pizzeriaRepository = new DbPizzeriaRepository();
 
-            pizzeriaRepository= _pizzeriaRepository;
+            pizzeriaRepository = _pizzeriaRepository;
         }
 
 
