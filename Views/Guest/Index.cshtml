@@ -3,7 +3,13 @@
     Layout = "_GuestLayout";
 }
 
-@*<body>
+<body>
+
+@*searchbar*@
+<div>
+    <input id="user_search" type="text" class="js_search form-control py-3" />
+    <!-- input id="user_search" type="text" class="js_search form-control" onkeyup="OnUserInput(this)" /> -->
+</div>
 
     <main>
 <div class="p-5 mb-4 bg-light rounded-3">
@@ -13,22 +19,8 @@
         <img src="~/images/istockphoto-638790274-612x612.jpg"/>
       </div>
     </div>
-</main>
 
-</body>
-*@
-
-<div>
-    <h1>Welcome Guest</h1>
-</div>
-
-@*searchbar*@
-<div>
-    <input id="user_search" type="text" class="js_search form-control" />
-    <!-- input id="user_search" type="text" class="js_search form-control" onkeyup="OnUserInput(this)" /> -->
-</div>
-
-<div class="row js_no_pizzas text-center d-none">
+    <div class="row js_no_pizzas text-center d-none">
     <div class="col-12">
         <h3>Non sono state trovate pizze</h3>
     </div>
@@ -36,6 +28,13 @@
 <div class="row js_pizzas_table d-none">
     <!-- qui verranno mostrati gli elementi -->
 </div>
+</main>
+
+
+</body>
+
+
+
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
