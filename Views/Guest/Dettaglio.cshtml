@@ -42,7 +42,7 @@
                 <h5 class="fs-3 fw-bold lh-1 mb-2">${pizza.category.name}</h5>
                 <h3>${pizza.prezzo} €</h3>
                 <p class="lead">${pizza.description}</p>
-                     <ul">${listaIngredienti}</ul>
+                    <h4>Ingredienti Extra:</h4> <ul">${listaIngredienti}</ul>
 
 
             </div>
@@ -50,16 +50,7 @@
     </div>
 
                             `
-                                                      ;
+                                                      ; 
         }).catch(error => console.log(error))
     </script>
 
-
-
-
-@*
-                
-                                        <div>
-                                            ${pizza.ingrediente.map(item => `<span class="badge bg-primary">#${item.title}</span>`, "").join(' ')}
-                                        </div>
-                                   *@
