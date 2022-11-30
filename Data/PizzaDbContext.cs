@@ -15,6 +15,8 @@ namespace la_mia_pizzeria_static.Data
 
         public DbSet<Ingrediente> Ingredienti { get; set; }
 
+        public DbSet<Message> Messages { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

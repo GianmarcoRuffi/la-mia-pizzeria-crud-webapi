@@ -1,12 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using la_mia_pizzeria_static.Models;
 
 namespace la_mia_pizzeria_static.Controllers.API
 {
-    public class MessageController : Controller
+    [Route("api/[controller]/[action]", Order = 1)]
+    [ApiController]
+    public class MessageController : ControllerBase
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        [HttpPost]
+
+        public void Post([FromBody] Message message)
     }
 }
