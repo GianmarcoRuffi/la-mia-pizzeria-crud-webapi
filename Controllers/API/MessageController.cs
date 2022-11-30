@@ -10,6 +10,8 @@ namespace la_mia_pizzeria_static.Controllers.API
     {
         [HttpPost]
 
-        public void Post([FromBody] Message message)
+        public IActionResult Post([FromBody] Message message)
+
+        { return Ok("message"); }
     }
 }
