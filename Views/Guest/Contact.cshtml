@@ -36,7 +36,15 @@
                                   username: document.querySelector('#contact-name').value,
                                   title: document.querySelector('#contact-title').value,
                                   text: document.querySelector('#contact-text').value,
-                              }
+                              }).then(res => {
+                                  swal("Messaggio inserito correttamente!", "Successo!");
+                                  //document.querySelector('#contact-email').value = '';
+                                  //document.querySelector('#contact-name').value = '';
+                                  document.querySelector('#contact-title').value = '';
+                                  document.querySelector('#contact-text').value = '';
+                              }).catch(error => {
+                                  console.log(error.response.data.errors);
+                              })
                           }
     </script>
 }
