@@ -1,4 +1,4 @@
-﻿    using Azure;
+﻿using Azure;
 using la_mia_pizzeria_static.Data;
 using la_mia_pizzeria_static.Models.Form;
 using Microsoft.EntityFrameworkCore;
@@ -11,12 +11,12 @@ namespace la_mia_pizzeria_static.Models.Repositories
 
     {
 
-        PizzaDbContext db;
-       
+        private PizzaDbContext db;
 
-        public DbPizzeriaRepository()
+
+        public DbPizzeriaRepository(PizzaDbContext _db)
         {
-            db = new PizzaDbContext();
+            db = _db;
         }
 
 
@@ -50,7 +50,7 @@ namespace la_mia_pizzeria_static.Models.Repositories
             {
 
                 Ingrediente ingrediente = db.Ingredienti.Where(item => item.Id == IngredienteId).FirstOrDefault();
-               pizza.Ingrediente.Add(ingrediente);
+                pizza.Ingrediente.Add(ingrediente);
 
             }
 
@@ -58,6 +58,8 @@ namespace la_mia_pizzeria_static.Models.Repositories
             db.Pizzas.Add(pizza);
             db.SaveChanges();
         }
+
+
 
 
         // metodo update

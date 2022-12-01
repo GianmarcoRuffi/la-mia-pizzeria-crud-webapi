@@ -8,9 +8,14 @@ using Microsoft.EntityFrameworkCore;
 
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("PizzaDbContextConnection");builder.Services.AddDbContext<PizzaDbContext>(options =>
-    options.UseSqlServer(connectionString));builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+var connectionString = builder.Configuration.GetConnectionString("PizzaDbContextConnection");
+
+builder.Services.AddDbContext<PizzaDbContext>(options =>
+    options.UseSqlServer(connectionString));
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<PizzaDbContext>();
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -36,9 +41,9 @@ System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
 //
 
 //injections per far partire con db
-//builder.Services.AddScoped<IPizzeriaRepository, DbPizzeriaRepository>();
+builder.Services.AddScoped<IPizzeriaRepository, DbPizzeriaRepository>();
 
-//
+
 
 var app = builder.Build();
 

@@ -20,16 +20,14 @@ namespace la_mia_pizzeria_static.Controllers
 
     {
 
-        PizzaDbContext db;
+       public PizzaDbContext db;
         IPizzeriaRepository pizzeriaRepository;
 
 
-        public PizzaController(IPizzeriaRepository _pizzeriaRepository) : base()
+        public PizzaController(IPizzeriaRepository _pizzeriaRepository, PizzaDbContext _db) : base()
         {
-            db = new PizzaDbContext();
-            //pizzeriaRepository = new DbPizzeriaRepository();
-
-            pizzeriaRepository= _pizzeriaRepository;
+            db = _db;
+            pizzeriaRepository = _pizzeriaRepository;
         }
 
 
@@ -51,25 +49,6 @@ namespace la_mia_pizzeria_static.Controllers
             return View(pizza);
         }
 
-
-        //public IActionResult Index()
-        //{
-
-
-        //    List<Pizza> listaPizza = db.Pizzas.Include("Category").ToList();
-
-        //return View(listaPizza);
-        //}
-
-        //public IActionResult Dettaglio(int Id)
-        //{
-
-
-
-        //    Pizza pizza = db.Pizzas.Where(item => item.Id == Id).Include("Category").Include("Ingrediente").FirstOrDefault();
-
-        //    return View(pizza);
-        //}
 
 
 
