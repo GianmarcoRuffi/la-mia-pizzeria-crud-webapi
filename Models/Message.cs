@@ -14,7 +14,7 @@ namespace la_mia_pizzeria_static.Models
 
         [Required(ErrorMessage = "Campo richiesto")]
         [StringLength(300, ErrorMessage = "La lunghezza eccede i caratteri consentiti")]    
-        [FiveWordsValidation]
+    
         public string? Name { get; set; }
 
         [Required(ErrorMessage = "Campo richiesto")]
