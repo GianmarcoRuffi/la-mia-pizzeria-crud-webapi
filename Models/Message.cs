@@ -26,14 +26,6 @@ namespace la_mia_pizzeria_static.Models
         public string? Text { get; set; }
 
 
-        public Message()
-        {
-
-
-
-
-        }
-
         public Message(string email, string name, string title, string text)
         {
 

@@ -31,7 +31,7 @@
      <script type="text/javascript">
                           function inviaMessaggio(e) {
                               e.preventDefault();
-                              axios.post('/api/message', {
+                              axios.post('/api/message/create', {
                                   email: document.querySelector('#contact-email').value,
                                   username: document.querySelector('#contact-name').value,
                                   title: document.querySelector('#contact-title').value,
