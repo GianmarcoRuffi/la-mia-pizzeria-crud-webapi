@@ -9,7 +9,7 @@ namespace la_mia_pizzeria_static.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Campo richiesto")]
-        [StringLength(300, ErrorMessage = "La lunghezza eccede i caratteri consentiti")]
+        [EmailAddress(ErrorMessage = "La mail deve avere un formato corretto")]
         public string? Email { get; set; }
 
         [Required(ErrorMessage = "Campo richiesto")]
@@ -22,26 +22,16 @@ namespace la_mia_pizzeria_static.Models
         public string? Title { get; set; }
 
         [Required(ErrorMessage = "Campo richiesto")]
-        [StringLength(300, ErrorMessage = "La lunghezza eccede i caratteri consentiti")]
         public string? Text { get; set; }
 
+        //public Message(string email, string name, string title, string text)
+        //{
 
-        public Message()
-        {
-
-
-
-
-        }
-
-        public Message(string email, string name, string title, string text)
-        {
-
-            this.Email = email;
-            this.Name = name;
-            this.Title = title;
-            this.Text = text;
-        }
+        //    this.Email = email;
+        //    this.Name = name;
+        //    this.Title = title;
+        //    this.Text = text;
+        //}
     }
 
 
