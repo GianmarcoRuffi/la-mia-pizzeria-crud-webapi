@@ -1,28 +1,30 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
     Layout = "_GuestLayout";
 }
 
 <body>
 
-@*searchbar*@
-<div>
-    <input id="user_search" type="text" class="js_search form-control py-3" />
-    <!-- input id="user_search" type="text" class="js_search form-control" onkeyup="OnUserInput(this)" /> -->
-</div>
-
     <main>
 <div class="p-5 mb-4 bg-light rounded-3">
-      <div class="container-fluid py-5">
-        <h1 class="display-5 fw-bold"><a asp-area="" asp-controller="Pizza" asp-action="Index">Aggiungi o modifica una pizza</a></h1>
-        <p class="col-md-8 fs-4">Dettagli delle pizze nelle schede sottostanti</p>
-        <img src="~/images/istockphoto-638790274-612x612.jpg"/>
+      <div class="container-fluid py-2">
+        <h1 class=" fw-bold"><a asp-area="" asp-controller="Pizza" asp-action="Index">Aggiungi o modifica una pizza</a></h1>
+               @* display-5*@
+        <p class="col-md-8 fs-4">Oppure ricerca tra quelle esistenti</p>
+                <img class="col-md-3" src="~/images/istockphoto-638790274-612x612.jpg" />
       </div>
     </div>
 
+        @*searchbar*@
+        <div>
+            <h1>Ricerca pizza per nome:</h1>
+            <input id="user_search" type="text" class="js_search form-control py-3" />
+            <!-- input id="user_search" type="text" class="js_search form-control" onkeyup="OnUserInput(this)" /> -->
+        </div>
+
     <div class="row js_no_pizzas text-center d-none">
     <div class="col-12">
-        <h3>Non sono state trovate pizze</h3>
+        <h3>Non sono state trovate pizze.</h3>
     </div>
 </div>
 <div class="row js_pizzas_table d-none">
