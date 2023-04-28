@@ -20,7 +20,8 @@ namespace la_mia_pizzeria_static.Controllers
 
     {
 
-       public PizzaDbContext db;
+
+        public PizzaDbContext db;
         IPizzeriaRepository pizzeriaRepository;
 
 
@@ -40,13 +41,13 @@ namespace la_mia_pizzeria_static.Controllers
 
         public IActionResult Dettaglio(int id)
         {
-            
-                Pizza pizza = pizzeriaRepository.GetById(id);
-                if (pizza == null)
-                    return NotFound();
+
+            Pizza pizza = pizzeriaRepository.GetById(id);
+            if (pizza == null)
+                return NotFound();
             else
 
-            return View(pizza);
+                return View(pizza);
         }
 
 
@@ -73,14 +74,6 @@ namespace la_mia_pizzeria_static.Controllers
             return View(formData);
         }
 
-        //{
-        //    //List<Category> categories = db.Categories.ToList();
-
-        //    //return View("Create");
-
-        //    return View(formData);
-        //}
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -99,7 +92,7 @@ namespace la_mia_pizzeria_static.Controllers
                 {
                     formData.Ingredienti.Add(new SelectListItem(ingrediente.Name, ingrediente.Id.ToString()));
                 }
-               
+
                 return View(formData);
             }
 
@@ -142,11 +135,11 @@ namespace la_mia_pizzeria_static.Controllers
 
 
         [HttpPost]
-        [ValidateAntiForgeryToken] 
+        [ValidateAntiForgeryToken]
         public IActionResult Modifica(int id, PizzaForm formData)
 
         {
-          
+
             if (!ModelState.IsValid)
             {
                 formData.Pizza.Id = id;
@@ -174,7 +167,7 @@ namespace la_mia_pizzeria_static.Controllers
 
             pizzeriaRepository.Modifica(pizza, formData.Pizza, formData.IngredientiSelezionati);
 
-          
+
             return RedirectToAction("Index");
         }
 
@@ -183,13 +176,13 @@ namespace la_mia_pizzeria_static.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete (int id)
+        public IActionResult Delete(int id)
 
         {
             Pizza pizza = pizzeriaRepository.GetById(id);
 
             if (pizza == null)
-            
+
                 return NotFound();
 
             else
@@ -202,7 +195,7 @@ namespace la_mia_pizzeria_static.Controllers
 
         }
 
-       
+
 
 
     }

@@ -7,6 +7,24 @@ using Microsoft.SqlServer.Server;
 
 namespace la_mia_pizzeria_static.Models.Repositories
 {
+
+    public interface IPizzeriaRepository
+    {
+
+        List<Pizza> All();
+
+        Pizza GetById(int id);
+        void Create(Pizza pizza, List<int> IngredientiSelezionati);
+        void Modifica(Pizza pizza, Pizza formData, List<int>? IngredientiSelezionati);
+        void Delete(Pizza pizza);
+
+        List<Pizza> SearchByName(string? name);
+
+
+
+    }
+
+
     public class DbPizzeriaRepository : IPizzeriaRepository
 
     {
@@ -29,6 +47,9 @@ namespace la_mia_pizzeria_static.Models.Repositories
         {
             return db.Pizzas.Include(pizza => pizza.Category).Include(pizza => pizza.Ingrediente).ToList();
         }
+
+
+
 
         public Pizza GetById(int id)
         {
